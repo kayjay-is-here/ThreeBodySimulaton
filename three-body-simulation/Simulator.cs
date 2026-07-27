@@ -24,7 +24,7 @@ public partial class Simulator : Node2D
 	{
         foreach (Body b in Bodies)
         {
-            b.ComputeAcceleration();
+            b.ComputePhysics();
         }
 
         foreach (Body b in Bodies)

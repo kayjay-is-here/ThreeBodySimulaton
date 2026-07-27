@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://dibrfbto7xr7h" path="res://icon.svg" id="1_2i6y6"]
 [ext_resource type="Script" uid="uid://m5iuwbttswce" path="res://Body.cs" id="1_in4ii"]
 
-[node name="Body" type="Node2D" unique_id=1159286946 node_paths=PackedStringArray("sprite")]
+[node name="Body" type="Node2D" unique_id=1159286946 node_paths=PackedStringArray("Sprite")]
 script = ExtResource("1_in4ii")
-sprite = NodePath("Sprite2D")
+Sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1758645856]
 texture = ExtResource("1_2i6y6")
