@@ -1,20 +1,21 @@
 [gd_scene format=3 uid="uid://c40fft77ckmc5"]
 
-[ext_resource type="Texture2D" uid="uid://dibrfbto7xr7h" path="res://icon.svg" id="1_i1ka3"]
+[ext_resource type="Script" uid="uid://dy7by3ymxldym" path="res://Simulator.cs" id="1_m3jav"]
+[ext_resource type="PackedScene" uid="uid://bn825cxa1fht7" path="res://body.tscn" id="2_e67ep"]
 
-[node name="System" type="Node2D" unique_id=1097567826]
+[node name="Simulator" type="Node2D" unique_id=1097567826 node_paths=PackedStringArray("Bodies")]
+script = ExtResource("1_m3jav")
+Bodies = [NodePath("Body0"), NodePath("Body1"), NodePath("Body2")]
 
-[node name="body3" type="Node2D" parent="." unique_id=1907482411]
+[node name="Body2" parent="." unique_id=1159286946 instance=ExtResource("2_e67ep")]
+position = Vector2(1201, 641)
+Mass = 10.0
 
-[node name="Sprite2D" type="Sprite2D" parent="body3" unique_id=1293090138]
-texture = ExtResource("1_i1ka3")
+[node name="Body1" parent="." unique_id=1046703137 instance=ExtResource("2_e67ep")]
+position = Vector2(406, 554)
+Mass = 10.0
 
-[node name="body2" type="Node2D" parent="." unique_id=49827368]
-
-[node name="Sprite2D" type="Sprite2D" parent="body2" unique_id=1378325003]
-texture = ExtResource("1_i1ka3")
-
-[node name="body1" type="Node2D" parent="." unique_id=1369397303]
-
-[node name="Sprite2D" type="Sprite2D" parent="body1" unique_id=2055634967]
-texture = ExtResource("1_i1ka3")
+[node name="Body0" parent="." unique_id=699405265 instance=ExtResource("2_e67ep")]
+position = Vector2(797, 319)
+Velocity = Vector2(0.2, 0)
+Mass = 100.0

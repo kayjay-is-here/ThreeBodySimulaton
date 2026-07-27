@@ -6,7 +6,7 @@ public partial class Simulator : Node2D
 {
 	
 	[Export] Body[] Bodies = new Body[3];
-    public static double G = 6.6743 * (10^-11);
+    public static double G = 1000;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{

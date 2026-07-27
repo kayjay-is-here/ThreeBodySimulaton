@@ -5,6 +5,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{982EAE03-ACEA-4749-A13B-0E22EB1F23C2}|ThreeBodySimulation.csproj|c:\\users\\yokon\\documents\\github\\threebodysimulaton\\three-body-simulation\\body.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{982EAE03-ACEA-4749-A13B-0E22EB1F23C2}|ThreeBodySimulation.csproj|solutionrelative:body.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{982EAE03-ACEA-4749-A13B-0E22EB1F23C2}|ThreeBodySimulation.csproj|c:\\users\\yokon\\documents\\github\\threebodysimulaton\\three-body-simulation\\simulator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{982EAE03-ACEA-4749-A13B-0E22EB1F23C2}|ThreeBodySimulation.csproj|solutionrelative:simulator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -24,9 +28,23 @@
               "RelativeDocumentMoniker": "Body.cs",
               "ToolTip": "C:\\Users\\yokon\\Documents\\GitHub\\ThreeBodySimulaton\\three-body-simulation\\Body.cs",
               "RelativeToolTip": "Body.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAHAAAAAAAAAA==",
+              "ViewState": "AgIAABoAAAAAAAAAAAA9wDAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-27T00:32:46.348Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Simulator.cs",
+              "DocumentMoniker": "C:\\Users\\yokon\\Documents\\GitHub\\ThreeBodySimulaton\\three-body-simulation\\Simulator.cs",
+              "RelativeDocumentMoniker": "Simulator.cs",
+              "ToolTip": "C:\\Users\\yokon\\Documents\\GitHub\\ThreeBodySimulaton\\three-body-simulation\\Simulator.cs",
+              "RelativeToolTip": "Simulator.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAA1wB8AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-27T01:27:47.852Z",
               "EditorCaption": ""
             }
           ]

@@ -26,13 +26,21 @@ public partial class Body : Node2D
 
 	public void ComputeAcceleration()
 	{
-		foreach (Body oB in OtherBodies)
+		Vector2 NewAcceleration = Vector2.Zero;
+        GD.Print($"{Name}'s OtherBodies: {OtherBodies.Count}");
+        foreach (Body oB in OtherBodies)
 		{
-			
+			if (oB == this) continue;
+
+			// Newton's law of gravitation
 			// r'' = -G*m2*(r1 - r2)/|r1-r2|^3 - G*m3*(r1-r3)/|r1-r3|^3
-			Acceleration -= (float)(Simulator.G*oB.Mass) * (Position - oB.Position)
-                / (float)(Math.Pow(((Position - oB.Position).Length()),3.0));
+			NewAcceleration -= (float)(Simulator.G*oB.Mass) * (Position - oB.Position)
+                / (float)Math.Pow((Position - oB.Position).Length(),3.0);
 		}
+
+		Acceleration = NewAcceleration;
+		GD.Print($"{Name}'s Acceleration: {Acceleration}");
+
 	}
 
 	public void Update()
