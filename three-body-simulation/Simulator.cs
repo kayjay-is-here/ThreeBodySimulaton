@@ -6,7 +6,8 @@ public partial class Simulator : Node2D
 {
 	
 	[Export] Body[] Bodies = new Body[3];
-    public static double G = 1000;
+    public static float G = 5000;
+    public static float TimeScale = 15;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -29,7 +30,7 @@ public partial class Simulator : Node2D
 
         foreach (Body b in Bodies)
         {
-            b.Update();
+            b.Update(delta);
         }
     }
 }

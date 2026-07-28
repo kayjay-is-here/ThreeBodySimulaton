@@ -26,6 +26,10 @@ window/stretch/aspect="expand"
 
 project/assembly_name="ThreeBodySimulation"
 
+[editor]
+
+movie_writer/movie_file="C:/Users/yokon/Documents/GitHub/ThreeBodySimulaton/three-body-simulation/movie files/output.avi"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

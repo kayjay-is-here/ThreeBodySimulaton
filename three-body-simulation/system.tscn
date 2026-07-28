@@ -7,8 +7,13 @@
 script = ExtResource("1_m3jav")
 Bodies = [NodePath("Body0"), NodePath("Body1"), NodePath("Body2")]
 
+[node name="Camera2D" type="Camera2D" parent="." unique_id=901076691]
+position = Vector2(1012, 528)
+zoom = Vector2(0.5, 0.5)
+
 [node name="Body2" parent="." unique_id=1159286946 instance=ExtResource("2_e67ep")]
 position = Vector2(1201, 641)
+Velocity = Vector2(25.935, -25.31)
 Mass = 10.0
 
 [node name="Body1" parent="." unique_id=1046703137 instance=ExtResource("2_e67ep")]
@@ -17,5 +22,5 @@ Mass = 10.0
 
 [node name="Body0" parent="." unique_id=699405265 instance=ExtResource("2_e67ep")]
 position = Vector2(797, 319)
-Velocity = Vector2(0.2, 0)
+Velocity = Vector2(2.975, 0)
 Mass = 100.0
