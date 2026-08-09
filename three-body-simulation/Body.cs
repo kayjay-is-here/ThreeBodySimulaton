@@ -43,65 +43,74 @@ public partial class Body : Node2D
 
 	}
 
-
-	public void ComputePhysics()
+	public Vector2 TestAcceleration(Vector2 testPos)
 	{
-		_isColliding = false;
+		Vector2 acc = Vector2.Zero;
 
-		Vector2 NewAcceleration = Vector2.Zero;
-
-		//GD.Print($"{Name}'s OtherBodies: {OtherBodies.Count}");
 		foreach (Body oB in OtherBodies)
 		{
+			Vector2 toOther = oB.Position - testPos;
+            float dist = toOther.Length();
+            float minDist = Radius + oB.Radius;
 
-			Vector2 toOther = oB.Position - Position;
-			float dist = toOther.Length();
-			float minDist = Radius + oB.Radius;
+            // Add acceleration from force exerted by other body
+            // r'' = -G*m2*(r1 - r2)/|r1-r2|^3 - G*m3*(r1-r3)/|r1-r3|^3
+            acc += (float)(Simulator.G * oB.Mass) * (toOther)
+			/ (float)Math.Pow(dist + softening, 3.0);
+        }
 
-			// Check if collision will occur between this and the other body
-			//|r2 - r1|^2 <= (r1+r2)^2 then overlap
-			if (dist <= minDist && dist > 0)
-			{
-				_isColliding = true;
-				//GD.Print($"{Name} is Colliding!");
-				// v_2 = v_1 + v_2/1
-				Vector2 relativeVelocity = oB.Velocity - Velocity;
-				Vector2 PrevVelocity = Velocity;
-				Vector2 normalDir = toOther.Normalized();
+		return acc;
+	}
 
+	public void HandleCollisions()
+	{
+		foreach (Body oB in OtherBodies)
+		{
+            Vector2 toOther = oB.Position - Position;
+            float dist = toOther.Length();
+            float minDist = Radius + oB.Radius;
 
-				if (relativeVelocity.Dot(normalDir) < 0)
-				{
-					// Project velocity along normal 
-					Vector2 normalVelocity = relativeVelocity.Dot(normalDir) * normalDir;
-
-					// along the normal: 
-					// v_f = -e*v_i
-					// J = v_f - v_i
-					// J = -e*v_i - v_i
-					// -> J = -(1+e)*v_i
-					Vector2 Impulse = -(1 + Restitution) * normalVelocity;
-					float MassRatio = (oB.Mass) / (Mass + oB.Mass);
-					Velocity = -Impulse * MassRatio;
-
-
-				}
+            // Check if collision will occur between this and the other body
+            //|r2 - r1|^2 <= (r1+r2)^2 then overlap
+            if (dist <= minDist && dist > 0)
+            {
+                _isColliding = true;
+                //GD.Print($"{Name} is Colliding!");
+                // v_2 = v_1 + v_2/1
+                Vector2 relativeVelocity = oB.Velocity - Velocity;
+                Vector2 PrevVelocity = Velocity;
+                Vector2 normalDir = toOther.Normalized();
 
 
-			}
+                if (relativeVelocity.Dot(normalDir) < 0)
+                {
+                    // Project velocity along normal 
+                    Vector2 normalVelocity = relativeVelocity.Dot(normalDir) * normalDir;
 
-			if (!_isColliding)
-			{
-				GD.Print($"{Name} is not colliding");
-				// Add acceleration from force exerted by other body
-				// r'' = -G*m2*(r1 - r2)/|r1-r2|^3 - G*m3*(r1-r3)/|r1-r3|^3
-				NewAcceleration += (float)(Simulator.G * oB.Mass) * (toOther)
-					/ (float)Math.Pow(dist + softening, 3.0);
-			}
+                    // along the normal: 
+                    // v_f = -e*v_i
+                    // J = v_f - v_i
+                    // J = -e*v_i - v_i
+                    // -> J = -(1+e)*v_i
+                    Vector2 Impulse = -(1 + Restitution) * normalVelocity;
+                    float MassRatio = (oB.Mass) / (Mass + oB.Mass);
+                    Velocity = -Impulse * MassRatio;
 
-		}
+                    float overlap = minDist - dist;
+                    float massRatio = oB.Mass / (Mass + oB.Mass);
 
-		Acceleration = NewAcceleration;
+                    Position -= normalDir * (overlap * massRatio);
+                }
+
+            }
+        }
+
+
+	}
+	public void ComputePhysics()
+	{
+		Acceleration = TestAcceleration(Position);
+		HandleCollisions();
 
 	}
 
