@@ -13,9 +13,10 @@ public partial class Body : Node2D
 	[Export] public Vector2 Acceleration;
 	[Export] public float Mass;
 	[Export] public float Restitution = 0.02f;
+	[Export] public float Radius = 100;
 
 	public const float MIN_SPEED = 0.0f;
-	public float Radius;
+	
 	public Vector2 NewVelocity;
 	public float softening = 0.1f;
 	public List<Body> OtherBodies;
@@ -23,9 +24,15 @@ public partial class Body : Node2D
 	private bool _isColliding;
 
 	// Called when the node enters the scene tree for the first time.
+
+	public override void _Draw()
+	{
+		DrawCircle(Vector2.Zero, Radius, new Color(255,255,255));
+	}
+
 	public override void _Ready()
 	{
-		Radius = Sprite.Texture.GetWidth() / 2;
+		Sprite.Visible = false;
 		//Radius = 100;
 
 	}
@@ -103,6 +110,8 @@ public partial class Body : Node2D
 		GD.Print($"{Name} has mass {Mass}");
 		GD.Print($"{Name} new Velocity is {NewVelocity.Length()}, {NewVelocity.Angle() / float.Pi * 180.0f} degs");
 		GD.Print($"{Name} new Acceleration is {Acceleration.Length()}, {Acceleration.Angle() / float.Pi * 180.0f} degs");
+
+		// Euler Integraiton
 		Velocity += Acceleration * (float)delta * Simulator.TimeScale;
 		Position += Velocity * (float)delta * Simulator.TimeScale;
 
